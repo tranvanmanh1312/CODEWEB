@@ -1,0 +1,242 @@
+.orders-page {
+    padding-bottom: 40px;
+}
+
+.orders-section > h2 {
+    margin-bottom: 22px;
+}
+
+.orders-empty {
+    padding: 22px;
+    text-align: center;
+    background-color: #f7f7f7;
+    border-radius: 12px;
+}
+
+.orders-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.orders-table {
+    min-width: 980px;
+}
+
+.orders-table th,
+.orders-table td {
+    vertical-align: top;
+}
+
+.orders-table td:nth-child(1),
+.orders-table td:nth-child(4) {
+    white-space: nowrap;
+}
+
+.order-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.order-action-button {
+    padding: 7px 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    color: #202020;
+    background-color: #f1eee9;
+    border: 1px solid #bbbbbb;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.order-action-button:hover {
+    color: #ffffff;
+    background-color: tomato;
+    border-color: tomato;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.modal-window {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    max-height: calc(100vh - 48px);
+    padding: 30px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.28);
+}
+
+.modal-window-small {
+    max-width: 430px;
+}
+
+.modal-window > h2 {
+    padding-right: 36px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 13px;
+    right: 16px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    font-size: 27px;
+    line-height: 1;
+    color: #333333;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: tomato;
+}
+
+.details-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.detail-row {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 16px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.detail-label {
+    font-weight: 700;
+    color: #333333;
+}
+
+.detail-value {
+    overflow-wrap: anywhere;
+}
+
+.modal-actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.modal-primary-button,
+.modal-secondary-button,
+.modal-danger-button {
+    padding: 10px 22px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.modal-primary-button {
+    color: #ffffff;
+    background-color: tomato;
+    border: 1px solid tomato;
+}
+
+.modal-primary-button:hover {
+    color: tomato;
+    background-color: #ffffff;
+}
+
+.modal-secondary-button {
+    color: #202020;
+    background-color: #f1eee9;
+    border: 1px solid #bbbbbb;
+}
+
+.modal-secondary-button:hover {
+    border-color: tomato;
+}
+
+.modal-danger-button {
+    color: #ffffff;
+    background-color: #b3261e;
+    border: 1px solid #b3261e;
+}
+
+.modal-danger-button:hover {
+    color: #b3261e;
+    background-color: #ffffff;
+}
+
+#edit-order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.toast {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1200;
+    max-width: 380px;
+    padding: 14px 18px;
+    color: #ffffff;
+    background-color: #333333;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.toast.success {
+    background-color: #2e7d32;
+}
+
+.toast.error {
+    background-color: #b3261e;
+}
+
+@media (max-width: 600px) {
+    .orders-section > h2 {
+        text-align: center;
+    }
+
+    .modal-overlay {
+        padding: 12px;
+    }
+
+    .modal-window {
+        padding: 24px 18px;
+    }
+
+    .detail-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .modal-primary-button,
+    .modal-secondary-button,
+    .modal-danger-button {
+        width: 100%;
+    }
+
+    .toast {
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+        max-width: none;
+    }
+}

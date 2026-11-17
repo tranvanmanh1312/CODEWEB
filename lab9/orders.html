@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta
+        name="description"
+        content="История заказов Vietnamese Station."
+    >
+    <title>Заказы — Vietnamese Station</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin="anonymous"
+    >
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="orders.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>VIETNAMESE STATION</h1>
+            <nav class="main-nav">
+                <a href="index.html">О нас</a>
+                <a href="lunch.html">Собрать ланч</a>
+                <a href="order.html">Оформить заказ</a>
+                <a
+                    class="active"
+                    href="orders.html"
+                >
+                    Заказы
+                </a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container orders-page">
+        <section class="orders-section">
+            <h2>История заказов</h2>
+
+            <p
+                id="orders-empty"
+                class="orders-empty hidden"
+            >
+                У вас пока нет оформленных заказов.
+            </p>
+
+            <div
+                id="orders-table-wrapper"
+                class="orders-table-wrapper hidden"
+            >
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Дата</th>
+                            <th>Состав заказа</th>
+                            <th>Стоимость</th>
+                            <th>Доставка</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div
+        id="details-modal"
+        class="modal-overlay hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="details-title"
+    >
+        <div class="modal-window">
+            <button
+                class="modal-close"
+                type="button"
+                data-close-modal
+                aria-label="Закрыть"
+            >
+                ×
+            </button>
+
+            <h2 id="details-title">
+                Информация о заказе
+            </h2>
+
+            <div
+                id="details-content"
+                class="details-content"
+            ></div>
+
+            <div class="modal-actions">
+                <button
+                    class="modal-primary-button"
+                    type="button"
+                    data-close-modal
+                >
+                    Ок
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div
+        id="edit-modal"
+        class="modal-overlay hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="edit-title"
+    >
+        <div class="modal-window">
+            <button
+                class="modal-close"
+                type="button"
+                data-close-modal
+                aria-label="Закрыть"
+            >
+                ×
+            </button>
+
+            <h2 id="edit-title">
+                Редактирование заказа
+            </h2>
+
+            <form id="edit-order-form">
+                <input
+                    id="edit-order-id"
+                    type="hidden"
+                    value=""
+                >
+
+                <div class="form-group">
+                    <label for="edit-full-name">
+                        Имя
+                    </label>
+                    <input
+                        id="edit-full-name"
+                        name="full_name"
+                        type="text"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-email">
+                        Email
+                    </label>
+                    <input
+                        id="edit-email"
+                        name="email"
+                        type="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-phone">
+                        Телефон
+                    </label>
+                    <input
+                        id="edit-phone"
+                        name="phone"
+                        type="tel"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-address">
+                        Адрес доставки
+                    </label>
+                    <input
+                        id="edit-address"
+                        name="delivery_address"
+                        type="text"
+                        required
+                    >
+                </div>
+
+                <fieldset class="delivery-fieldset">
+                    <legend>Время доставки</legend>
+
+                    <div class="radio-option">
+                        <input
+                            id="edit-delivery-now"
+                            name="delivery_type"
+                            type="radio"
+                            value="now"
+                            required
+                        >
+                        <label for="edit-delivery-now">
+                            Как можно скорее
+                        </label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input
+                            id="edit-delivery-by-time"
+                            name="delivery_type"
+                            type="radio"
+                            value="by_time"
+                            required
+                        >
+                        <label for="edit-delivery-by-time">
+                            К указанному времени
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="edit-delivery-time">
+                        Укажите время доставки
+                    </label>
+                    <input
+                        id="edit-delivery-time"
+                        name="delivery_time"
+                        type="time"
+                        min="07:00"
+                        max="23:00"
+                        step="300"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-comment">
+                        Комментарий
+                    </label>
+                    <textarea
+                        id="edit-comment"
+                        name="comment"
+                        rows="4"
+                    ></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button
+                        class="modal-secondary-button"
+                        type="button"
+                        data-close-modal
+                    >
+                        Отмена
+                    </button>
+                    <button
+                        class="modal-primary-button"
+                        type="submit"
+                    >
+                        Сохранить
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div
+        id="delete-modal"
+        class="modal-overlay hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="delete-title"
+    >
+        <div class="modal-window modal-window-small">
+            <button
+                class="modal-close"
+                type="button"
+                data-close-modal
+                aria-label="Закрыть"
+            >
+                ×
+            </button>
+
+            <h2 id="delete-title">
+                Удаление заказа
+            </h2>
+
+            <p>
+                Вы действительно хотите удалить этот заказ?
+            </p>
+
+            <input
+                id="delete-order-id"
+                type="hidden"
+                value=""
+            >
+
+            <div class="modal-actions">
+                <button
+                    class="modal-secondary-button"
+                    type="button"
+                    data-close-modal
+                >
+                    Отмена
+                </button>
+                <button
+                    id="confirm-delete-button"
+                    class="modal-danger-button"
+                    type="button"
+                >
+                    Да
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div
+        id="toast"
+        class="toast hidden"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+    <footer id="contacts">
+        <div class="container">
+            <p>
+                Позвонить нам:
+                <a href="tel:+74951234567">
+                    +7 (495) 123-45-67
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="dishes.js"></script>
+    <script src="orders.js"></script>
+</body>
+</html>

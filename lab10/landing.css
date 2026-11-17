@@ -1,0 +1,80 @@
+body {
+    font-family: "Roboto", sans-serif;
+    color: #202020;
+}
+
+.py-lg-6 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.hero-section {
+    background:
+        linear-gradient(
+            135deg,
+            #fff7f4 0%,
+            #ffffff 55%,
+            #fff0ec 100%
+        );
+}
+
+.hero-image-wrapper {
+    position: relative;
+}
+
+.hero-image-wrapper::before {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    z-index: -1;
+    width: 45%;
+    height: 45%;
+    content: "";
+    background-color: #ffddd4;
+    border-radius: 2rem;
+}
+
+.feature-card {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 1rem 2rem rgba(0, 0, 0, 0.12)
+        !important;
+}
+
+.feature-number {
+    width: 44px;
+    height: 44px;
+    color: #ffffff;
+    font-weight: 700;
+    background-color: #dc3545;
+}
+
+.cta-section {
+    background:
+        linear-gradient(
+            135deg,
+            #dc3545 0%,
+            #b02a37 100%
+        );
+}
+
+.navbar-brand {
+    letter-spacing: 0.04em;
+}
+
+@media (max-width: 991.98px) {
+    .py-lg-6 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .hero-image-wrapper::before {
+        display: none;
+    }
+}
