@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+<!-- Служебная часть страницы: кодировка, метаданные, шрифт и CSS. -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,10 +23,13 @@
     <link rel="stylesheet" href="lunch.css">
     <link rel="stylesheet" href="form.css">
 </head>
+<!-- Видимая часть страницы. -->
 <body>
+    <!-- Шапка сайта: название компании и навигация. -->
     <header class="site-header">
         <div class="container">
             <h1>VIETNAMESE STATION</h1>
+            <!-- Навигационное меню между страницами сайта. -->
             <nav class="main-nav">
                 <a href="index.html">О нас</a>
                 <a class="active" href="lunch.html">Собрать ланч</a>
@@ -35,26 +39,32 @@
         </div>
     </header>
 
+    <!-- Основное содержимое страницы. -->
     <main class="container">
+        <!-- Категория меню; карточки будут добавлены через JavaScript. -->
         <section class="menu-section">
             <h2>Супы</h2>
             <div class="dishes-grid" id="soups"></div>
         </section>
 
+        <!-- Категория меню; карточки будут добавлены через JavaScript. -->
         <section class="menu-section">
             <h2>Главные блюда</h2>
             <div class="dishes-grid" id="main-courses"></div>
         </section>
 
+        <!-- Категория меню; карточки будут добавлены через JavaScript. -->
         <section class="menu-section">
             <h2>Напитки</h2>
             <div class="dishes-grid" id="drinks"></div>
         </section>
     </main>
 
+    <!-- Раздел оформления заказа и отображения выбранных блюд. -->
     <section class="order-section container">
         <h2>Оформить заказ</h2>
 
+        <!-- Форма заказа отправляет данные методом POST на httpbin.org. -->
         <form
             class="order-form"
             action="https://httpbin.org/post"
@@ -63,6 +73,7 @@
             <div class="form-column">
                 <h3>Ваш заказ</h3>
 
+                <!-- Блок с выбранными блюдами и итоговой стоимостью. -->
                 <div class="order-summary">
                     <p id="nothing-selected">
                         Ничего не выбрано
@@ -99,6 +110,7 @@
                     </div>
                 </div>
 
+                <!-- Скрытые поля отправляют keyword выбранных блюд. -->
                 <input
                     id="soup-keyword"
                     name="soup"
@@ -191,6 +203,7 @@
                     >
                 </div>
 
+                <!-- Группа radio-кнопок для выбора варианта доставки. -->
                 <fieldset class="delivery-fieldset">
                     <legend>Время доставки</legend>
 
@@ -238,6 +251,7 @@
                     </p>
                 </div>
 
+                <!-- Кнопки сброса и отправки формы. -->
                 <div class="form-actions">
                     <button type="reset">
                         Сбросить
@@ -253,6 +267,7 @@
         </form>
     </section>
 
+    <!-- Футер с контактной информацией. -->
     <footer id="contacts">
         <div class="container">
             <p>
@@ -262,6 +277,7 @@
         </div>
     </footer>
 
+    <!-- Подключение массива блюд и основного JavaScript-скрипта. -->
     <script src="dishes.js"></script>
     <script src="script.js"></script>
 </body>

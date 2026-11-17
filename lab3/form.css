@@ -1,13 +1,16 @@
+/* Общий контейнер раздела оформления заказа. */
 .order-section {
     margin: 0 auto 40px;
     padding: 0;
 }
 
+/* Оформление заголовка формы заказа. */
 .order-section > h2 {
     margin-bottom: 22px;
     font-size: 30px;
 }
 
+/* Форма размещается в две колонки с помощью CSS Grid. */
 .order-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -18,12 +21,14 @@
     border-radius: 20px;
 }
 
+/* Каждая колонка формы организована вертикально с помощью Flexbox. */
 .form-column {
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
 
+/* Оформление заголовков колонок формы. */
 .form-column h3 {
     margin: 0 0 8px;
     font-size: 24px;
@@ -31,23 +36,28 @@
     color: #333333;
 }
 
+/* Группа label + поле ввода располагается вертикально. */
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
+/* Общие стили подписей полей и legend. */
 .form-group label,
 .checkbox-group label,
 .radio-option label,
+/* Отступ для заголовка группы radio-кнопок. */
 .delivery-fieldset legend {
     font-size: 16px;
     font-weight: 500;
     color: #202020;
 }
 
+/* Общие размеры и оформление input, select и textarea. */
 .form-group input,
 .form-group select,
+/* Размер и возможность вертикального изменения textarea. */
 .form-group textarea {
     width: 100%;
     padding: 10px 12px;
@@ -59,6 +69,7 @@
     border-radius: 5px;
 }
 
+/* Одинаковая высота обычных полей и списков. */
 .form-group input,
 .form-group select {
     height: 42px;
@@ -69,6 +80,7 @@
     resize: vertical;
 }
 
+/* Выделение активного поля при фокусе. */
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
@@ -76,6 +88,7 @@
     outline-offset: 1px;
 }
 
+/* Чекбокс и radio располагаются в одну строку с подписью. */
 .checkbox-group,
 .radio-option {
     display: flex;
@@ -83,6 +96,7 @@
     gap: 8px;
 }
 
+/* Настройка размеров и курсора для checkbox и radio. */
 .checkbox-group input,
 .radio-option input {
     width: auto;
@@ -90,6 +104,7 @@
     cursor: pointer;
 }
 
+/* Группа элементов выбора времени доставки без стандартной рамки. */
 .delivery-fieldset {
     margin: 0;
     padding: 8px 0 0;
@@ -101,16 +116,19 @@
     padding: 0;
 }
 
+/* Отступ между вариантами radio. */
 .radio-option + .radio-option {
     margin-top: 8px;
 }
 
+/* Небольшая поясняющая подпись под полем времени. */
 .form-note {
     margin-top: 2px;
     font-size: 13px;
     color: #777777;
 }
 
+/* Контейнер кнопок сброса и отправки формы. */
 .form-actions {
     margin-top: auto;
     padding-top: 6px;
@@ -118,6 +136,7 @@
     gap: 12px;
 }
 
+/* Общий стиль кнопок формы. */
 .form-actions button {
     flex: 1;
     padding: 10px 20px;
@@ -130,16 +149,19 @@
     cursor: pointer;
 }
 
+/* Изменение рамки кнопки при наведении. */
 .form-actions button:hover {
     border-color: tomato;
 }
 
+/* Выделение основной кнопки отправки формы. */
 .form-actions .submit-button {
     color: #ffffff;
     background-color: tomato;
     border-color: tomato;
 }
 
+/* Уменьшение отступов формы на планшетах. */
 @media (max-width: 800px) {
     .order-form {
         gap: 30px;
@@ -147,6 +169,7 @@
     }
 }
 
+/* На мобильных форма становится одноколоночной. */
 @media (max-width: 600px) {
     .order-section > h2 {
         text-align: center;

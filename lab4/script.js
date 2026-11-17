@@ -1,9 +1,11 @@
+/* Хранит выбранные блюда по категориям. */
 const selectedDishes = {
     soup: undefined,
     main: undefined,
     drink: undefined,
 };
 
+/* Настройки связывают категории с HTML-элементами формы и меню. */
 const categorySettings = {
     soup: {
         containerId: "soups",
@@ -25,10 +27,12 @@ const categorySettings = {
     },
 };
 
+/* Формирует текст с названием блюда и его ценой. */
 function formatDishText(dish) {
     return `${dish.name} ${dish.price} ₽`;
 }
 
+/* Обновляет текст выбранного блюда в нужной категории заказа. */
 function updateOrderCategory(category) {
     const settings = categorySettings[category];
     const textElement = document.getElementById(settings.textId);
@@ -42,6 +46,7 @@ function updateOrderCategory(category) {
     textElement.textContent = formatDishText(dish);
 }
 
+/* Записывает keyword выбранных блюд в скрытые поля формы. */
 function updateHiddenInputs() {
     Object.keys(categorySettings).forEach((category) => {
         const settings = categorySettings[category];
@@ -52,6 +57,7 @@ function updateHiddenInputs() {
     });
 }
 
+/* Добавляет класс selected выбранной карточке блюда. */
 function updateSelectedCards() {
     document.querySelectorAll(".dish-card").forEach((card) => {
         const dish = dishes.find((item) => {
@@ -70,6 +76,7 @@ function updateSelectedCards() {
     });
 }
 
+/* Считает общую стоимость всех выбранных блюд. */
 function updateTotal() {
     const totalBlock = document.getElementById("order-total");
     const totalPrice = document.getElementById("total-price");
@@ -85,6 +92,7 @@ function updateTotal() {
     totalBlock.classList.toggle("hidden", total === 0);
 }
 
+/* Полностью обновляет блок «Ваш заказ». */
 function renderOrder() {
     const nothingSelected = document.getElementById(
         "nothing-selected"
@@ -107,11 +115,13 @@ function renderOrder() {
     updateTotal();
 }
 
+/* Сохраняет выбранное блюдо и обновляет заказ. */
 function selectDish(dish) {
     selectedDishes[dish.category] = dish;
     renderOrder();
 }
 
+/* Обрабатывает клик по кнопке «Добавить» и находит блюдо по data-dish. */
 function handleAddButton(event) {
     const card = event.currentTarget.closest(".dish-card");
     const keyword = card.dataset.dish;
@@ -125,6 +135,7 @@ function handleAddButton(event) {
     }
 }
 
+/* Создаёт HTML-карточку блюда с помощью DOM. */
 function createDishCard(dish) {
     const card = document.createElement("div");
     card.className = "dish-card";
@@ -159,6 +170,7 @@ function createDishCard(dish) {
     return card;
 }
 
+/* Фильтрует блюда по категории, сортирует и выводит их на страницу. */
 function renderCategory(category) {
     const settings = categorySettings[category];
     const container = document.getElementById(settings.containerId);
@@ -174,12 +186,14 @@ function renderCategory(category) {
     });
 }
 
+/* Запускает отображение блюд для всех категорий. */
 function renderDishes() {
     Object.keys(categorySettings).forEach((category) => {
         renderCategory(category);
     });
 }
 
+/* Очищает выбранные блюда и возвращает заказ в начальное состояние. */
 function resetOrder() {
     Object.keys(selectedDishes).forEach((category) => {
         selectedDishes[category] = undefined;
@@ -188,10 +202,12 @@ function resetOrder() {
     renderOrder();
 }
 
+/* Обработчик кнопки сброса формы. */
 function handleFormReset() {
     resetOrder();
 }
 
+/* Получаем форму и запускаем начальное отображение страницы. */
 const orderForm = document.querySelector(".order-form");
 
 renderDishes();

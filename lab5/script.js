@@ -1,3 +1,4 @@
+/* Хранит выбранные блюда для всех пяти категорий. */
 const selectedDishes = {
     soup: undefined,
     main: undefined,
@@ -6,6 +7,7 @@ const selectedDishes = {
     dessert: undefined,
 };
 
+/* Хранит активный фильтр kind для каждой категории. */
 const activeFilters = {
     soup: undefined,
     main: undefined,
@@ -14,6 +16,7 @@ const activeFilters = {
     dessert: undefined,
 };
 
+/* Настройки связывают категории с HTML-контейнерами, текстом и hidden input. */
 const categorySettings = {
     soup: {
         containerId: "soups",
@@ -47,10 +50,12 @@ const categorySettings = {
     },
 };
 
+/* Формирует текст с названием блюда и его ценой. */
 function formatDishText(dish) {
     return `${dish.name} ${dish.price} ₽`;
 }
 
+/* Обновляет текст выбранного блюда в нужной категории заказа. */
 function updateOrderCategory(category) {
     const settings = categorySettings[category];
     const textElement = document.getElementById(settings.textId);
@@ -64,6 +69,7 @@ function updateOrderCategory(category) {
     textElement.textContent = formatDishText(dish);
 }
 
+/* Записывает keyword выбранных блюд в скрытые поля формы. */
 function updateHiddenInputs() {
     Object.keys(categorySettings).forEach((category) => {
         const settings = categorySettings[category];
@@ -74,6 +80,7 @@ function updateHiddenInputs() {
     });
 }
 
+/* Добавляет класс selected выбранной карточке блюда. */
 function updateSelectedCards() {
     document.querySelectorAll(".dish-card").forEach((card) => {
         const dish = dishes.find((item) => {
@@ -92,6 +99,7 @@ function updateSelectedCards() {
     });
 }
 
+/* Считает общую стоимость всех выбранных блюд. */
 function updateTotal() {
     const totalBlock = document.getElementById("order-total");
     const totalPrice = document.getElementById("total-price");
@@ -107,6 +115,7 @@ function updateTotal() {
     totalBlock.classList.toggle("hidden", total === 0);
 }
 
+/* Полностью обновляет блок «Ваш заказ». */
 function renderOrder() {
     const nothingSelected = document.getElementById(
         "nothing-selected"
@@ -129,11 +138,13 @@ function renderOrder() {
     updateTotal();
 }
 
+/* Сохраняет выбранное блюдо и обновляет заказ. */
 function selectDish(dish) {
     selectedDishes[dish.category] = dish;
     renderOrder();
 }
 
+/* Обрабатывает кнопку «Добавить» и находит блюдо по data-dish. */
 function handleAddButton(event) {
     const card = event.currentTarget.closest(".dish-card");
     const keyword = card.dataset.dish;
@@ -147,6 +158,7 @@ function handleAddButton(event) {
     }
 }
 
+/* Создаёт HTML-карточку блюда через DOM. */
 function createDishCard(dish) {
     const card = document.createElement("div");
     card.className = "dish-card";
@@ -181,6 +193,7 @@ function createDishCard(dish) {
     return card;
 }
 
+/* Возвращает блюда категории с учётом активного фильтра kind и сортировки. */
 function getCategoryDishes(category) {
     const currentFilter = activeFilters[category];
 
@@ -199,6 +212,7 @@ function getCategoryDishes(category) {
         });
 }
 
+/* Очищает контейнер и заново выводит блюда текущей категории. */
 function renderCategory(category) {
     const settings = categorySettings[category];
     const container = document.getElementById(settings.containerId);
@@ -212,12 +226,14 @@ function renderCategory(category) {
     updateSelectedCards();
 }
 
+/* Запускает отображение блюд для всех категорий. */
 function renderDishes() {
     Object.keys(categorySettings).forEach((category) => {
         renderCategory(category);
     });
 }
 
+/* Добавляет класс active выбранной кнопке фильтра. */
 function setFilterButtonState(filtersBlock, activeKind) {
     filtersBlock.querySelectorAll("[data-kind]").forEach((button) => {
         const isActive = button.dataset.kind === activeKind;
@@ -225,6 +241,7 @@ function setFilterButtonState(filtersBlock, activeKind) {
     });
 }
 
+/* Включает, меняет или отключает фильтр после клика по кнопке. */
 function handleFilterClick(event) {
     const button = event.target.closest("[data-kind]");
 
@@ -250,12 +267,14 @@ function handleFilterClick(event) {
     renderCategory(category);
 }
 
+/* Подключает обработчик клика ко всем блокам фильтров. */
 function connectFilters() {
     document.querySelectorAll(".filters").forEach((filtersBlock) => {
         filtersBlock.addEventListener("click", handleFilterClick);
     });
 }
 
+/* Очищает выбранные блюда и возвращает заказ в начальное состояние. */
 function resetOrder() {
     Object.keys(selectedDishes).forEach((category) => {
         selectedDishes[category] = undefined;
@@ -264,10 +283,12 @@ function resetOrder() {
     renderOrder();
 }
 
+/* Обработчик кнопки сброса формы. */
 function handleFormReset() {
     resetOrder();
 }
 
+/* Получаем форму и запускаем начальное отображение страницы. */
 const orderForm = document.querySelector(".order-form");
 
 renderDishes();

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+<!-- Служебная часть страницы: кодировка, метаданные, шрифт и CSS. -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,10 +23,13 @@
     <link rel="stylesheet" href="lunch.css">
     <link rel="stylesheet" href="form.css">
 </head>
+<!-- Видимая часть страницы. -->
 <body>
+    <!-- Шапка сайта: название компании и навигация. -->
     <header class="site-header">
         <div class="container">
             <h1>VIETNAMESE STATION</h1>
+            <!-- Навигационное меню между страницами сайта. -->
             <nav class="main-nav">
                 <a href="index.html">О нас</a>
                 <a class="active" href="lunch.html">Собрать ланч</a>
@@ -35,10 +39,14 @@
         </div>
     </header>
 
+    <!-- Основное содержимое страницы. -->
     <main class="container">
+        <!-- Категория меню с карточками блюд. -->
         <section class="menu-section">
             <h2>Супы</h2>
+            <!-- Сетка карточек блюд. -->
             <div class="dishes-grid">
+                <!-- Карточка одного блюда: фото, цена, название, вес и кнопка. -->
                 <div class="dish-card">
                     <img
                         src="images/phobo.jpeg"
@@ -53,6 +61,7 @@
                         Добавить
                     </button>
                 </div>
+                <!-- Карточка одного блюда: фото, цена, название, вес и кнопка. -->
                 <div class="dish-card">
                     <img
                         src="images/comga.jpeg"
@@ -67,6 +76,7 @@
                         Добавить
                     </button>
                 </div>
+                <!-- Карточка одного блюда: фото, цена, название, вес и кнопка. -->
                 <div class="dish-card">
                     <img
                         src="images/canhchua.jpeg"
@@ -83,9 +93,12 @@
                 </div>
             </div>
         </section>
+        <!-- Категория меню с карточками блюд. -->
         <section class="menu-section">
             <h2>Главные блюда</h2>
+            <!-- Сетка карточек блюд. -->
             <div class="dishes-grid">
+                <!-- Карточка одного блюда: фото, цена, название, вес и кнопка. -->
                 <div class="dish-card">
                     <img
                         src="images/buncha.jpg"
@@ -100,6 +113,7 @@
                         Добавить
                     </button>
                 </div>
+                <!-- Карточка одного блюда: фото, цена, название, вес и кнопка. -->
                 <div class="dish-card">
                     <img
                         src="images/comga.jpeg"
@@ -114,6 +128,7 @@
                         Добавить
                     </button>
                 </div>
+                <!-- Карточка одного блюда: фото, цена, название, вес и кнопка. -->
                 <div class="dish-card">
                     <img
                         src="images/nemran.jpg"
@@ -130,9 +145,12 @@
                 </div>
             </div>
         </section>
+        <!-- Категория меню с карточками блюд. -->
         <section class="menu-section">
             <h2>Напитки</h2>
+            <!-- Сетка карточек блюд. -->
             <div class="dishes-grid">
+                <!-- Карточка одного блюда: фото, цена, название, вес и кнопка. -->
                 <div class="dish-card">
                     <img
                         src="images/caphe.jpg"
@@ -147,6 +165,7 @@
                         Добавить
                     </button>
                 </div>
+                <!-- Карточка одного блюда: фото, цена, название, вес и кнопка. -->
                 <div class="dish-card">
                     <img
                         src="images/trachanh.jpg"
@@ -161,6 +180,7 @@
                         Добавить
                     </button>
                 </div>
+                <!-- Карточка одного блюда: фото, цена, название, вес и кнопка. -->
                 <div class="dish-card">
                     <img
                         src="images/xoai.jpg"
@@ -179,17 +199,21 @@
         </section>
     </main>
 
+    <!-- Раздел оформления заказа с формой клиента. -->
     <section class="order-section container">
         <h2>Оформить заказ</h2>
 
+        <!-- Форма отправляет данные методом POST на httpbin.org. -->
         <form
             class="order-form"
             action="https://httpbin.org/post"
             method="post"
         >
+            <!-- Левая колонка формы: выбор блюд и комментарий. -->
             <div class="form-column">
                 <h3>Ваш заказ</h3>
 
+                <!-- Группа поля формы: label и элемент ввода. -->
                 <div class="form-group">
                     <label for="soup">Суп</label>
                     <select id="soup" name="soup" required>
@@ -202,6 +226,7 @@
                     </select>
                 </div>
 
+                <!-- Группа поля формы: label и элемент ввода. -->
                 <div class="form-group">
                     <label for="main-course">Главное блюдо</label>
                     <select
@@ -218,6 +243,7 @@
                     </select>
                 </div>
 
+                <!-- Группа поля формы: label и элемент ввода. -->
                 <div class="form-group">
                     <label for="drink">Напиток</label>
                     <select id="drink" name="drink" required>
@@ -236,6 +262,7 @@
                     </select>
                 </div>
 
+                <!-- Группа поля формы: label и элемент ввода. -->
                 <div class="form-group">
                     <label for="comment">Комментарий к заказу</label>
                     <textarea
@@ -250,6 +277,7 @@
             <div class="form-column">
                 <h3>Ваши данные</h3>
 
+                <!-- Группа поля формы: label и элемент ввода. -->
                 <div class="form-group">
                     <label for="customer-name">Имя</label>
                     <input
@@ -261,6 +289,7 @@
                     >
                 </div>
 
+                <!-- Группа поля формы: label и элемент ввода. -->
                 <div class="form-group">
                     <label for="customer-email">Email</label>
                     <input
@@ -272,6 +301,7 @@
                     >
                 </div>
 
+                <!-- Чекбокс подписки, выбранный по умолчанию. -->
                 <div class="checkbox-group">
                     <input
                         id="subscribe"
@@ -285,6 +315,7 @@
                     </label>
                 </div>
 
+                <!-- Группа поля формы: label и элемент ввода. -->
                 <div class="form-group">
                     <label for="customer-phone">Телефон</label>
                     <input
@@ -296,6 +327,7 @@
                     >
                 </div>
 
+                <!-- Группа поля формы: label и элемент ввода. -->
                 <div class="form-group">
                     <label for="delivery-address">
                         Адрес доставки
@@ -309,6 +341,7 @@
                     >
                 </div>
 
+                <!-- Группа radio-кнопок для выбора варианта доставки. -->
                 <fieldset class="delivery-fieldset">
                     <legend>Время доставки</legend>
 
@@ -339,6 +372,7 @@
                     </div>
                 </fieldset>
 
+                <!-- Группа поля формы: label и элемент ввода. -->
                 <div class="form-group">
                     <label for="delivery-time">
                         Укажите время доставки
@@ -356,6 +390,7 @@
                     </p>
                 </div>
 
+                <!-- Кнопки сброса и отправки формы. -->
                 <div class="form-actions">
                     <button type="reset">
                         Сбросить
@@ -371,6 +406,7 @@
         </form>
     </section>
 
+    <!-- Футер с контактной информацией. -->
     <footer id="contacts">
         <div class="container">
             <p>

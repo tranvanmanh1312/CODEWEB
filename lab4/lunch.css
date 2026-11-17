@@ -1,13 +1,16 @@
+/* Отступ после заголовка категории меню. */
 .menu-section h2 {
     margin-bottom: 18px;
 }
 
+/* CSS Grid для карточек блюд. */
 .dishes-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
 }
 
+/* Карточка блюда как вертикальный Flex-контейнер. */
 .dish-card {
     min-width: 0;
     padding: 30px 40px;
@@ -20,16 +23,20 @@
     filter: drop-shadow(17px 19px 24px rgba(0, 0, 0, 0.13));
 }
 
+/* Рамка при наведении и для выбранной карточки. */
 .dish-card:hover,
 .dish-card.selected {
     border-color: tomato;
 }
 
-.dish-card:hover .add-button {
+/* При наведении на карточку меняется цвет кнопки внутри неё. */
+.dish-card:hover /* Оформление кнопки «Добавить». */
+.add-button {
     color: #ffffff;
     background-color: tomato;
 }
 
+/* Изображение заполняет карточку и сохраняет пропорции. */
 .dish-card img {
     display: block;
     width: 100%;
@@ -39,18 +46,21 @@
     border-radius: 35px;
 }
 
+/* Оформление цены блюда. */
 .dish-price {
     margin-top: 20px;
     font-size: 20px;
     font-weight: 700;
 }
 
+/* Оформление названия блюда. */
 .dish-name {
     margin-top: 8px;
     font-size: 20px;
     font-weight: 500;
 }
 
+/* Вес или объём прижимается вниз карточки и выделяется серым. */
 .dish-weight {
     margin-top: auto;
     padding-top: 12px;
@@ -69,12 +79,14 @@
     cursor: pointer;
 }
 
+/* На экранах до 800px сетка становится двухколоночной. */
 @media (max-width: 800px) {
     .dishes-grid {
         grid-template-columns: 1fr 1fr;
     }
 }
 
+/* На экранах до 600px карточки располагаются в одну колонку. */
 @media (max-width: 600px) {
     .menu-section h2 {
         text-align: center;
