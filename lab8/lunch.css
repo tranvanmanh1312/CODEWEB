@@ -227,3 +227,8 @@
         text-align: center;
     }
 }
+
+/* Не показываем панель, пока заказ пуст. */
+.checkout-panel.hidden {
+    display: none;
+}

@@ -169,14 +169,6 @@ function connectDeliveryType() {
         });
 }
 
-function hasConfiguredApiKey() {
-    return (
-        API_KEY !== ""
-        && API_KEY
-            !== "PASTE_YOUR_UUIDV4_API_KEY_HERE"
-    );
-}
-
 function addDishIdsToPayload(payload) {
     if (selectedDishes.soup !== undefined) {
         payload.soup_id = selectedDishes.soup.id;
@@ -234,39 +226,24 @@ function buildOrderPayload(form) {
     return payload;
 }
 
-async function sendOrder(payload) {
-    const requestUrl =
-        `${ORDERS_API_URL}?api_key=`
-        + encodeURIComponent(API_KEY);
+// Локальное оформление: сохраняем данные только в этом браузере.
+function sendOrder(payload) {
+    const saved = localStorage.getItem(LOCAL_ORDERS_KEY);
+    const orders = saved ? JSON.parse(saved) : [];
 
-    const response = await fetch(
-        requestUrl,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-        }
-    );
-
-    let responseData = {};
-
-    try {
-        responseData = await response.json();
-    } catch (error) {
-        console.error(error);
+    if (!Array.isArray(orders)) {
+        throw new Error("Ошибка сохранения заказов");
     }
 
-    if (!response.ok) {
-        const message =
-            responseData.error
-            || `Ошибка сервера: ${response.status}`;
+    const order = {
+        ...payload,
+        id: Date.now(),
+        created_at: new Date().toISOString(),
+    };
 
-        throw new Error(message);
-    }
-
-    return responseData;
+    orders.push(order);
+    localStorage.setItem(LOCAL_ORDERS_KEY, JSON.stringify(orders));
+    return order;
 }
 
 async function handleOrderSubmit(event) {
@@ -281,13 +258,6 @@ async function handleOrderSubmit(event) {
         return;
     }
 
-    if (!hasConfiguredApiKey()) {
-        showNotification(
-            "Укажите персональный API Key "
-            + "в файле config.js"
-        );
-        return;
-    }
 
     if (!form.reportValidity()) {
         return;
@@ -296,11 +266,11 @@ async function handleOrderSubmit(event) {
     const payload = buildOrderPayload(form);
 
     try {
-        await sendOrder(payload);
+        sendOrder(payload);
         clearSelectedDishes();
 
         window.alert(
-            "Заказ успешно оформлен"
+            "Заказ сохранён в этом браузере"
         );
         window.location.href = "lunch.html";
     } catch (error) {

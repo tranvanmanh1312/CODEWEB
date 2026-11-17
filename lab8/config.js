@@ -1,5 +1,2 @@
-const API_KEY =
-    "PASTE_YOUR_UUIDV4_API_KEY_HERE";
-
-const ORDERS_API_URL =
-    "https://edu.std-900.ist.mospolytech.ru/labs/api/orders";
+// Локальная версия: заказ сохраняется в localStorage, без сервера.
+const LOCAL_ORDERS_KEY = "vietnamese-station-local-orders";

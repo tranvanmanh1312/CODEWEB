@@ -71,7 +71,7 @@ function restoreSelectedDishes() {
         }
 
         selectedDishes[category] = dishes.find((dish) => {
-            return dish.id === storedId;
+            return dish.id === storedId && dish.category === category;
         });
     });
 }

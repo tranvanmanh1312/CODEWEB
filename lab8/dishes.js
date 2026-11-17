@@ -1,27 +1,23 @@
-const DISHES_API_URL =
-    "https://edu.std-900.ist.mospolytech.ru/labs/api/dishes";
+// Данные блюд загружаются только из локального файла api.json.
+const API_URL = "api.json";
 
 let dishes = [];
 
 async function loadDishes() {
-    const response = await fetch(DISHES_API_URL);
+    const response = await fetch(API_URL);
 
     if (!response.ok) {
-        throw new Error(
-            `Ошибка загрузки блюд: ${response.status}`
-        );
+        throw new Error(`Ошибка загрузки блюд: ${response.status}`);
     }
 
     const data = await response.json();
 
-    dishes = data.map((dish) => {
-        if (dish.category === "main-course") {
-            return {
-                ...dish,
-                category: "main",
-            };
-        }
+    if (!Array.isArray(data)) {
+        throw new Error("Неверный формат api.json");
+    }
 
-        return dish;
-    });
+    dishes = data.map((dish) => ({
+        ...dish,
+        category: dish.category === "main-course" ? "main" : dish.category,
+    }));
 }
