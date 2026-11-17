@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/lab7/api/dishes"
+  to = "https://edu.std-900.ist.mospolytech.ru/labs/api/dishes"
+  status = 200
+  force = true

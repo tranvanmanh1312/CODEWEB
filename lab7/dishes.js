@@ -1,5 +1,4 @@
-const API_URL =
-    "https://edu.std-900.ist.mospolytech.ru/labs/api/dishes";
+const API_URL = "/lab7/api/dishes";
 
 let dishes = [];
 
